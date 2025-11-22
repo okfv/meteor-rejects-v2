@@ -1,0 +1,79 @@
+name: Build Stable Release
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Release version (e.g. 1.2.3)'
+        required: true
+        type: string
+      release_name:
+        description: 'Optional release title override'
+        required: false
+        type: string
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 21
+
+      - name: Set up Gradle
+        uses: gradle/actions/setup-gradle@v4
+
+      - name: Make Gradle wrapper executable
+        run: chmod +x ./gradlew scripts/run_build.sh
+
+      - name: Build with Gradle Wrapper Script
+        run: ./scripts/run_build.sh --no-configuration-cache
+
+      - name: Prepare release metadata
+        id: meta
+        run: |
+          VERSION="${{ github.event.inputs.version }}"
+          if [ -z "$VERSION" ]; then
+            echo "Version input is required." >&2
+            exit 1
+          fi
+          TAG="v$VERSION"
+          NAME="${{ github.event.inputs.release_name }}"
+          if [ -z "$NAME" ]; then
+            NAME="Rejects² $TAG"
+          fi
+          {
+            echo "tag_name=$TAG"
+            echo "release_name=$NAME"
+          } >> "$GITHUB_OUTPUT"
+
+      - name: Upload release artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: stable-release-jars
+          path: |
+            build/libs/*.jar
+            build.log
+
+      - name: Publish Stable Release
+        uses: softprops/action-gh-release@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ steps.meta.outputs.tag_name }}
+          name: ${{ steps.meta.outputs.release_name }}
+          prerelease: false
+          files: |
+            build/libs/*.jar
+            build.log

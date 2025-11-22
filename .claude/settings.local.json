@@ -1,0 +1,25 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(gradlew build:*)",
+      "Bash(./gradlew build:*)",
+      "Bash(find:*)",
+      "WebSearch",
+      "Bash(tee:*)",
+      "Bash(./gradlew compileJava:*)",
+      "WebFetch(domain:maven.fabricmc.net)",
+      "Bash(./gradlew clean build:*)",
+      "Bash(unzip:*)",
+      "Bash(javap -c -p -v -)",
+      "Bash(javap:*)",
+      "Bash(git add:*)",
+      "Bash(./gradlew sources:*)",
+      "Bash(dir /s /b C:UsersCope.gradlecachesfabric-loom 2)",
+      "Bash(nul)",
+      "Bash(findstr:*)",
+      "Bash(del \"C:\\Users\\Cope\\Documents\\GitHub\\meteor-rejects-1.21.10\\src\\main\\java\\anticope\\rejects\\mixin\\LivingEntityRendererAccessor.java\" \"C:\\Users\\Cope\\Documents\\GitHub\\meteor-rejects-1.21.10\\src\\main\\java\\anticope\\rejects\\mixin\\ModelPartAccessor.java\")"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}
