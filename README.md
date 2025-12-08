@@ -29,7 +29,7 @@ This continuation is yet not fully tested, and not associated with the original 
 
  **Tip:** It is recommended to use the [latest dev build](https://meteorclient.com/download?devBuild=latest) of Meteor Client
 
-<hr />
+
 
 ## New in Rejects²
 
@@ -42,7 +42,7 @@ This continuation is yet not fully tested, and not associated with the original 
 | **ElytraBot** | Threaded elytra autopilot with A* pathfinding, automatic firework refills, and Baritone integration |
 | **RaidTimer** | Shows precise raid timing and handles ominous potion refills automatically for raid farms |
 
-<hr />
+
 
 ## Original Features
 
@@ -167,7 +167,7 @@ This continuation is yet not fully tested, and not associated with the original 
 | **Load System Fonts** | Disable for faster launch (requires restart) |
 | **Duplicate Module Names** | Allow multiple modules with same name |
 
-<hr />
+
 
 ## Development
 
@@ -185,7 +185,7 @@ Use Gradle to build: `./gradlew build`
 <br>
 Output JAR: `build/libs/meteor-rejects-addon-<version>.jar`
 
-<hr />
+
 
 ## Migration History
 
@@ -201,12 +201,12 @@ This port was accomplished through several major milestones:
 | **6** | Added ElytraBot & RaidTimer modules |
 | **7** | Rewrote SkeletonESP for full 1.21.10 compatibility |
 
-<hr />
+
 
 ## License
 
 This project inherits licensing from the original [Meteor Rejects](https://github.com/AntiCope/meteor-rejects).
 
-<hr />
+
 
 </div>
